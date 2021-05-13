@@ -1,5 +1,7 @@
 # Comment Module
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a539798b-c34a-40c1-9d53-8c371d72e753/deploy-status)](https://app.netlify.com/sites/comment-module/deploys)
+
 Design taken from the [Comment Module Codewell challenge](https://www.codewell.cc/challenges/608bc18ee0984a001540d7a6).
 
 This project was bootstrapped with the [Vue CLI](https://v3.vuejs.org/guide/installation.html#cli).
