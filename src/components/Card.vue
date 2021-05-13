@@ -15,6 +15,7 @@ export default {
   background-color: var(--white);
   border-radius: 10px;
   box-shadow: 0px 4px 15px var(--drop-shadow-color);
+  max-width: 816px;
   padding: 15px;
   width: 100%;
 
