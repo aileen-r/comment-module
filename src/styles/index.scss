@@ -1,0 +1,9 @@
+@import '_variables';
+
+body {
+  background: linear-gradient(180deg, var(--yellow) 20%, var(--orange) 80%)
+      fixed,
+    var(--yellow);
+  color: var(--black);
+  font-family: 'Rubik', Arial, Helvetica, sans-serif;
+}
