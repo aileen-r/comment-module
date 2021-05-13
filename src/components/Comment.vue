@@ -18,6 +18,7 @@
         This is really great! I fully agree with what you wrote, and this is
         sure to help me out in the future. Thank you for posting this.
       </p>
+      <comment-voting v-model:votes="votes" />
       <button type="button">Reply</button>
       <button type="button">Report</button>
     </div>
@@ -195,8 +196,18 @@
 </template>
 
 <script>
+import CommentVoting from './CommentVoting';
+
 export default {
   name: 'Comment',
+  components: {
+    CommentVoting,
+  },
+  data() {
+    return {
+      votes: 2,
+    };
+  },
 };
 </script>
 
