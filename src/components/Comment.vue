@@ -6,17 +6,21 @@
     </a>
     <summary>
       <div class="comment-heading">
+        <img
+          class="comment-avatar"
+          :src="`${publicPath}assets/UserAvatar.png`"
+        />
         <div class="comment-info">
-          <a href="#" class="comment-author-name">someguy14</a>
-          <p class="comment-timestamp">4 days ago</p>
+          <a href="#" class="comment-author-name">adamsdavid</a>
+          <p class="comment-timestamp">20 hours ago</p>
         </div>
       </div>
     </summary>
 
     <div class="comment-body">
       <p>
-        This is really great! I fully agree with what you wrote, and this is
-        sure to help me out in the future. Thank you for posting this.
+        I genuinely think that Codewell's community is AMAZING. It's just
+        starting out but the templates on there are amazing. 👀
       </p>
       <comment-voting v-model:votes="votes" />
       <button type="button">Reply</button>
@@ -205,6 +209,7 @@ export default {
   },
   data() {
     return {
+      publicPath: process.env.BASE_URL,
       votes: 2,
     };
   },
@@ -212,8 +217,37 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$img-width-sm: 45px;
+$img-width-md: 55px;
+$gutter-width-sm: 15px;
+$gutter-width-md: 25px;
+$reply-offset-sm: calc(#{$gutter-width-sm} + #{$img-width-sm});
+$reply-offset-md: calc(#{$gutter-width-md} + #{$img-width-md});
+
+.comment {
+  position: relative;
+}
+
+.comment-heading {
+  display: flex;
+
+  .comment-avatar {
+    border-radius: 50%;
+    height: $img-width-sm;
+    margin-right: $gutter-width-sm;
+    width: $img-width-sm;
+
+    @media screen and (min-width: $bp-md) {
+      height: $img-width-md;
+      margin-right: $gutter-width-md;
+      width: $img-width-md;
+    }
+  }
+}
+
 .comment-info {
   display: flex;
+  margin-top: 4px;
 
   .comment-author-name {
     color: var(--black);
@@ -231,7 +265,62 @@ export default {
   }
 }
 
-.comment-body p {
-  margin: 16px 0;
+.comment-body {
+  margin-left: $reply-offset-sm;
+
+  @media screen and (min-width: $bp-md) {
+    margin-left: $reply-offset-md;
+  }
+
+  p {
+    margin: -10px 0 20px 0;
+  }
+}
+
+.comment-border-link {
+  background-color: var(--lighter-grey);
+  background-clip: padding-box;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  display: block;
+  // 9px offsets button padding + line height
+  height: calc(100% - 55px - 9px);
+  left: 18px;
+  outline: 4px solid transparent;
+  position: absolute;
+  top: 55px;
+  width: 12px;
+
+  &:hover {
+    background-color: var(--light-grey);
+  }
+}
+
+details.comment summary {
+  position: relative;
+  list-style: none;
+  cursor: pointer;
+}
+
+details.comment summary::-webkit-details-marker {
+  display: none;
+}
+
+.comment-heading::after {
+  align-self: center;
+  color: rgba(0, 0, 0, 0.55);
+  display: inline-block;
+  font-size: 12px;
+  position: absolute;
+  right: 5px;
+  top: 6px;
+}
+
+details.comment[open] .comment-heading::after {
+  content: 'Hide';
+}
+
+details.comment:not([open]) .comment-heading::after {
+  content: 'Show';
 }
 </style>

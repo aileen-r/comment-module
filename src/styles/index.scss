@@ -6,6 +6,7 @@
   --black: #000000;
   --grey: #808080;
   --light-grey: #aeaeae;
+  --lighter-grey: #cccaca;
   --lightest-grey: #e9e9e9;
   --white: #ffffff;
   --orange: #ff9c85;
@@ -32,6 +33,7 @@ body {
     var(--yellow);
   color: var(--black);
   font-family: 'Rubik', Arial, Helvetica, sans-serif;
+  line-height: 22px;
 
   @media screen and (min-width: $bp-lg) {
     // Is there a nice way to use CSS variables here?
