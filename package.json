@@ -32,6 +32,6 @@
     "not dead"
   ],
   "lint-staged": {
-    "*.{js, json, vue}": "npm run lint"
+    "*.{js,vue}": "npm run lint"
   }
 }
