@@ -32,6 +32,11 @@
     "not dead"
   ],
   "lint-staged": {
-    "*.vue": "npm run lint"
+    "*.{js, json, vue}": "npm run lint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
