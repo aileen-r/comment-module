@@ -1,6 +1,32 @@
-# Comment Module Codewell Challenge
+# Comment Module
 
-- [Challenge Page Link](https://www.codewell.cc/challenges/608bc18ee0984a001540d7a6)
+Design taken from the [Comment Module Codewell challenge](https://www.codewell.cc/challenges/608bc18ee0984a001540d7a6).
+
+This project was bootstrapped with the [Vue CLI](https://v3.vuejs.org/guide/installation.html#cli).
+
+
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
 ## Welcome to Codewell! 👋
