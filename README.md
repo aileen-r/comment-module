@@ -14,7 +14,7 @@ npm install
 
 ### Compiles and hot-reloads for development
 ```
-npm serve
+npm start
 ```
 
 ### Compiles and minifies for production
@@ -33,7 +33,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ## Welcome to Codewell! 👋
 
-Codewell's aim is to provide you with real-world design templates that you can use to practice your HTML and CSS projects. 
+Codewell's aim is to provide you with real-world design templates that you can use to practice your HTML and CSS projects.
 
 Free or paid, all templates are high quality and will make great portfolio pieces.
 
@@ -54,7 +54,7 @@ Enter all the title, Github repo URL, Live URL (Netlify or GH Pages), and tell t
 
 ### Join our community on Slack
 
-If you want more real-time communication, you can visit our community on [Slack](https://join.slack.com/t/codewell-hq/shared_invite/zt-ni8c9g8h-gNYWrmqQ3Uh37dcLg9~LMQ). 
+If you want more real-time communication, you can visit our community on [Slack](https://join.slack.com/t/codewell-hq/shared_invite/zt-ni8c9g8h-gNYWrmqQ3Uh37dcLg9~LMQ).
 
 
 ### Fonts Used

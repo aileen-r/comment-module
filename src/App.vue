@@ -15,12 +15,24 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+:root {
+  --black: #000000;
+  --grey: #808080;
+  --white: #ffffff;
+  --orange: #ff9c85;
+  --pink: #ffccec;
+  --purple: #9594ff;
+  --yellow: #ffcb8f;
+}
+
+body {
+  background: linear-gradient(180deg, var(--yellow) 18.54%, var(--orange) 82.6%),
+    var(--yellow);
+  color: var(--black);
+  font-family: 'Rubik', Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
   margin-top: 60px;
 }
 </style>
