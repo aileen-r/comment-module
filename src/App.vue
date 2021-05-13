@@ -26,7 +26,8 @@ export default {
 }
 
 body {
-  background: linear-gradient(180deg, var(--yellow) 18.54%, var(--orange) 82.6%),
+  background: linear-gradient(180deg, var(--yellow) 18.54%, var(--orange) 82.6%)
+      fixed,
     var(--yellow);
   color: var(--black);
   font-family: 'Rubik', Arial, Helvetica, sans-serif;
