@@ -1,4 +1,15 @@
-@import '_variables';
+:root {
+  /* colours */
+  --black: #000000;
+  --grey: #808080;
+  --white: #ffffff;
+  --orange: #ff9c85;
+  --pink: #ffccec;
+  --purple: #9594ff;
+  --yellow: #ffcb8f;
+
+  --drop-shadow-color: rgba(128, 128, 128, 0.25);
+}
 
 body {
   background: linear-gradient(180deg, var(--yellow) 20%, var(--orange) 80%)
