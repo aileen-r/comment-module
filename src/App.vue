@@ -18,8 +18,16 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 #app {
-  margin: 15px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 15px;
+
+  @media screen and (min-width: $bp-md) {
+    padding: 40px;
+  }
 }
 </style>

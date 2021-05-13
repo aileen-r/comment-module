@@ -16,6 +16,7 @@ export default {
   border-radius: 10px;
   box-shadow: 0px 4px 15px var(--drop-shadow-color);
   padding: 15px;
+  width: 100%;
 
   @media screen and (min-width: $bp-md) {
     padding: 46px 65px;

@@ -11,6 +11,16 @@
   --drop-shadow-color: rgba(128, 128, 128, 0.25);
 }
 
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
 body {
   background: linear-gradient(180deg, var(--yellow) 20%, var(--orange) 80%)
       fixed,
