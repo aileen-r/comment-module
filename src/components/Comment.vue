@@ -155,7 +155,6 @@ $reply-offset-md: calc(#{$gutter-width-md} + #{$img-width-md});
   // 9px offsets button padding + line height
   height: calc(100% - 55px - 9px);
   left: 18px;
-  outline: 4px solid transparent;
   position: absolute;
   top: 55px;
   width: 12px;
