@@ -313,6 +313,14 @@ $reply-offset-md: calc(#{$gutter-width-md} + #{$img-width-md});
   }
 }
 
+details.comment:not([open]) {
+  padding-bottom: 25px;
+
+  @media screen and (min-width: $bp-md) {
+    padding-bottom: 35px;
+  }
+}
+
 details.comment summary {
   position: relative;
   list-style: none;
