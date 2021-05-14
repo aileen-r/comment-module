@@ -2,7 +2,7 @@
   <!-- Comment 1 start -->
   <details open class="comment" id="comment-1">
     <a href="#comment-1" class="comment-border-link">
-      <span class="sr-only">Jump to comment-1</span>
+      <span class="sr-only">Jump to comment 1</span>
     </a>
     <summary>
       <div class="comment-heading">
@@ -27,36 +27,38 @@
       <button type="button">Report</button>
     </div>
 
-    <!-- <div class="replies">
+    <div class="replies">
       <details open class="comment" id="comment-2">
         <a href="#comment-2" class="comment-border-link">
-          <span class="sr-only">Jump to comment-2</span>
+          <span class="sr-only">Jump to comment 2</span>
         </a>
         <summary>
           <div class="comment-heading">
-            <div class="comment-voting">
-              <button type="button">
-                <span aria-hidden="true">&#9650;</span>
-                <span class="sr-only">Vote up</span>
-              </button>
-              <button type="button">
-                <span aria-hidden="true">&#9660;</span>
-                <span class="sr-only">Vote down</span>
-              </button>
-            </div>
+            <img
+              class="comment-avatar"
+              :src="`${publicPath}assets/UserAvatar-1.png`"
+            />
             <div class="comment-info">
-              <a href="#" class="comment-author">randomperson81</a>
-              <p class="m-0">4 points &bull; 3 days ago</p>
+              <a href="#" class="comment-author-name">saramay</a>
+              <p class="comment-timestamp">16 hours ago</p>
             </div>
           </div>
         </summary>
 
         <div class="comment-body">
-          <p>Took the words right out of my mouth!</p>
+          <p>
+            I agree. I've been coding really well (pun intended) ever since I
+            started practising on their templates hehe.
+          </p>
+          <comment-voting v-model:votes="votes" />
           <button type="button">Reply</button>
           <button type="button">Report</button>
         </div>
       </details>
+    </div>
+
+    <!-- <div class="replies">
+
 
 
       <details open class="comment" id="comment-3">
@@ -276,15 +278,17 @@ $reply-offset-md: calc(#{$gutter-width-md} + #{$img-width-md});
 }
 
 .comment-body {
+  margin-bottom: 25px;
   margin-left: $reply-offset-sm;
   margin-top: 22px;
 
   @media screen and (min-width: $bp-md) {
+    margin-bottom: 35px;
     margin-left: $reply-offset-md;
   }
 
   p {
-    margin: -10px 0 20px 0;
+    margin: -10px 0 12px 0;
   }
 }
 
@@ -351,5 +355,13 @@ details.comment[open] .comment-heading::after {
 
 details.comment:not([open]) .comment-heading::after {
   content: 'Show';
+}
+
+.replies {
+  margin-left: $reply-offset-sm;
+
+  @media screen and (min-width: $bp-md) {
+    margin-left: $reply-offset-md;
+  }
 }
 </style>
