@@ -1,11 +1,15 @@
 <template>
   <button @click="upVote" class="vote-button" type="button">
-    <img aria-hidden="true" :src="`${publicPath}assets/Up.svg`" />
+    <img aria-hidden="true" :src="`${publicPath}assets/Up.svg`" alt="Vote up" />
     <span class="sr-only">Vote up</span>
   </button>
   <span class="votes">{{ votes }}</span>
   <button @click="downVote" class="vote-button" type="button">
-    <img aria-hidden="true" :src="`${publicPath}assets/Down.svg`" />
+    <img
+      aria-hidden="true"
+      :src="`${publicPath}assets/Down.svg`"
+      alt="Vote down"
+    />
     <span class="sr-only">Vote down</span>
   </button>
 </template>
@@ -49,7 +53,9 @@ export default {
 
   img {
     position: relative;
+    height: 8px;
     top: -1px;
+    width: 13px;
   }
 }
 </style>
