@@ -235,6 +235,7 @@ $reply-offset-md: calc(#{$gutter-width-md} + #{$img-width-md});
     border-radius: 50%;
     height: $img-width-sm;
     margin-right: $gutter-width-sm;
+    position: absolute;
     width: $img-width-sm;
 
     @media screen and (min-width: $bp-md) {
@@ -247,11 +248,16 @@ $reply-offset-md: calc(#{$gutter-width-md} + #{$img-width-md});
 
 .comment-info {
   display: flex;
+  flex-wrap: wrap;
+  line-height: 16px;
+  margin-left: $reply-offset-sm;
   margin-top: 4px;
+  padding-right: 40px;
 
   .comment-author-name {
     color: var(--black);
     font-weight: 700;
+    margin-right: 10px;
     text-decoration: none;
 
     &:hover {
@@ -261,12 +267,13 @@ $reply-offset-md: calc(#{$gutter-width-md} + #{$img-width-md});
 
   .comment-timestamp {
     color: var(--grey);
-    margin: 0 0 0 10px;
+    margin: 0;
   }
 }
 
 .comment-body {
   margin-left: $reply-offset-sm;
+  margin-top: 22px;
 
   @media screen and (min-width: $bp-md) {
     margin-left: $reply-offset-md;
@@ -313,7 +320,7 @@ details.comment summary::-webkit-details-marker {
   font-size: 12px;
   position: absolute;
   right: 5px;
-  top: 6px;
+  top: 2px;
 }
 
 details.comment[open] .comment-heading::after {
