@@ -254,6 +254,10 @@ $reply-offset-md: calc(#{$gutter-width-md} + #{$img-width-md});
   margin-top: 4px;
   padding-right: 40px;
 
+  @media screen and (min-width: $bp-md) {
+    margin-left: $reply-offset-md;
+  }
+
   .comment-author-name {
     color: var(--black);
     font-weight: 700;
@@ -298,6 +302,12 @@ $reply-offset-md: calc(#{$gutter-width-md} + #{$img-width-md});
   top: 55px;
   width: 12px;
 
+  @media screen and (min-width: $bp-md) {
+    height: calc(100% - 65px - 9px);
+    left: 21px;
+    top: 65px;
+  }
+
   &:hover {
     background-color: var(--light-grey);
   }
@@ -321,6 +331,10 @@ details.comment summary::-webkit-details-marker {
   position: absolute;
   right: 5px;
   top: 2px;
+
+  @media screen and (min-width: $bp-md) {
+    top: 1px;
+  }
 }
 
 details.comment[open] .comment-heading::after {
