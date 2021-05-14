@@ -155,15 +155,14 @@ $reply-offset-md: calc(#{$gutter-width-md} + #{$img-width-md});
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
   display: block;
-  // 9px offsets button padding + line height
-  height: calc(100% - 55px - 9px);
+  height: calc(100% - 55px);
   left: 18px;
   position: absolute;
   top: 55px;
   width: 12px;
 
   @media screen and (min-width: $bp-md) {
-    height: calc(100% - 65px - 9px);
+    height: calc(100% - 65px);
     left: 21px;
     top: 65px;
   }
@@ -215,11 +214,11 @@ details.comment:not([open]) .comment-heading::after {
 
 .replies {
   margin-left: $reply-offset-sm;
-  margin-top: 25px;
+  margin-top: 20px;
 
   @media screen and (min-width: $bp-md) {
     margin-left: $reply-offset-md;
-    margin-top: 35px;
+    margin-top: 25px;
   }
 }
 </style>
