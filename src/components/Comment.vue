@@ -116,7 +116,7 @@ $reply-offset-md: calc(#{$gutter-width-md} + #{$img-width-md});
 
   .comment-author-name {
     color: var(--black);
-    font-weight: 700;
+    font-weight: 600;
     margin-right: 10px;
     text-decoration: none;
 

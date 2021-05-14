@@ -42,7 +42,6 @@ export default {
 
 <style lang="scss" scoped>
 .votes {
-  // TODO: load in heavier font
   // TODO: position so there is no horizontal reflow from e.g. 1 -> 2
   font-weight: 700;
   margin: 0 3px;
