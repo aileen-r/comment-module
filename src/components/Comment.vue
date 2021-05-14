@@ -77,9 +77,14 @@ $reply-offset-sm: calc(#{$gutter-width-sm} + #{$img-width-sm});
 $reply-offset-md: calc(#{$gutter-width-md} + #{$img-width-md});
 
 .comment {
+  margin-bottom: 25px;
   position: relative;
 
-  &:not(.nested-comment):last-child .comment-body {
+  @media screen and (min-width: $bp-md) {
+    margin-bottom: 35px;
+  }
+
+  &:not(.nested-comment):last-child {
     margin-bottom: 0;
   }
 }
@@ -132,12 +137,10 @@ $reply-offset-md: calc(#{$gutter-width-md} + #{$img-width-md});
 }
 
 .comment-body {
-  margin-bottom: 25px;
   margin-left: $reply-offset-sm;
   margin-top: 22px;
 
   @media screen and (min-width: $bp-md) {
-    margin-bottom: 35px;
     margin-left: $reply-offset-md;
   }
 
@@ -212,9 +215,11 @@ details.comment:not([open]) .comment-heading::after {
 
 .replies {
   margin-left: $reply-offset-sm;
+  margin-top: 25px;
 
   @media screen and (min-width: $bp-md) {
     margin-left: $reply-offset-md;
+    margin-top: 35px;
   }
 }
 </style>
