@@ -1,7 +1,13 @@
 <template>
-  <card>
-    <comment v-for="comment in comments" :key="comment.id" :comment="comment" />
-  </card>
+  <transition name="fade" appear>
+    <card>
+      <comment
+        v-for="comment in comments"
+        :key="comment.id"
+        :comment="comment"
+      />
+    </card>
+  </transition>
 </template>
 
 <script>
@@ -34,5 +40,15 @@ export default {
   @media screen and (min-width: $bp-md) {
     padding: 40px;
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
