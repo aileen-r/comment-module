@@ -1,60 +1,36 @@
 <template>
-  <!-- Comment 1 start -->
-  <details open class="comment" id="comment-1">
-    <a href="#comment-1" class="comment-border-link">
-      <span class="sr-only">Jump to comment 1</span>
+  <details open class="comment" :id="comment.id">
+    <a :href="`#${comment.id}`" class="comment-border-link">
+      <span class="sr-only">Jump to comment {{ comment.id }}</span>
     </a>
     <summary>
       <div class="comment-heading">
         <img
           class="comment-avatar"
-          :src="`${publicPath}assets/UserAvatar.png`"
+          :src="`${publicPath}assets/${comment.authorAvatar}`"
         />
         <div class="comment-info">
-          <a href="#" class="comment-author-name">adamsdavid</a>
-          <p class="comment-timestamp">20 hours ago</p>
+          <a href="#" class="comment-author-name">{{ comment.author }}</a>
+          <p class="comment-timestamp">{{ comment.timestamp }}</p>
         </div>
       </div>
     </summary>
 
     <div class="comment-body">
       <p>
-        I genuinely think that Codewell's community is AMAZING. It's just
-        starting out but the templates on there are amazing. 👀
+        {{ comment.body }}
       </p>
       <comment-voting v-model:votes="votes" />
       <button type="button">Reply</button>
       <button type="button">Report</button>
     </div>
 
-    <div class="replies">
-      <details open class="comment" id="comment-2">
-        <a href="#comment-2" class="comment-border-link">
-          <span class="sr-only">Jump to comment 2</span>
-        </a>
-        <summary>
-          <div class="comment-heading">
-            <img
-              class="comment-avatar"
-              :src="`${publicPath}assets/UserAvatar-1.png`"
-            />
-            <div class="comment-info">
-              <a href="#" class="comment-author-name">saramay</a>
-              <p class="comment-timestamp">16 hours ago</p>
-            </div>
-          </div>
-        </summary>
-
-        <div class="comment-body">
-          <p>
-            I agree. I've been coding really well (pun intended) ever since I
-            started practising on their templates hehe.
-          </p>
-          <comment-voting v-model:votes="votes" />
-          <button type="button">Reply</button>
-          <button type="button">Report</button>
-        </div>
-      </details>
+    <div v-if="comment.replies && comment.replies.length" class="replies">
+      <comment
+        v-for="reply in comment.replies"
+        :key="reply.id"
+        :comment="reply"
+      />
     </div>
 
     <!-- <div class="replies">
@@ -212,8 +188,14 @@ export default {
   data() {
     return {
       publicPath: process.env.BASE_URL,
-      votes: 2,
+      votes: this.comment.votes,
     };
+  },
+  props: {
+    comment: {
+      type: Object,
+      default: () => ({}),
+    },
   },
 };
 </script>
@@ -254,7 +236,7 @@ $reply-offset-md: calc(#{$gutter-width-md} + #{$img-width-md});
   line-height: 16px;
   margin-left: $reply-offset-sm;
   margin-top: 4px;
-  padding-right: 40px;
+  padding-right: 35px;
 
   @media screen and (min-width: $bp-md) {
     margin-left: $reply-offset-md;
@@ -341,7 +323,7 @@ details.comment summary::-webkit-details-marker {
   display: inline-block;
   font-size: 12px;
   position: absolute;
-  right: 5px;
+  right: 0;
   top: 2px;
 
   @media screen and (min-width: $bp-md) {

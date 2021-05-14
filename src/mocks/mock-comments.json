@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "author": "adamsdavid",
+    "authorAvatar": "UserAvatar.png",
+    "timestamp": "20 hours ago",
+    "body": "I genuinely think that Codewell's community is AMAZING. It's just starting out but the templates on there are amazing. 👀",
+    "votes": 2,
+    "replies": [
+      {
+        "id": 2,
+        "author": "saramay",
+        "authorAvatar": "UserAvatar-1.png",
+        "timestamp": "16 hours ago",
+        "body": "I agree. I've been coding really well (pun intended) ever since I started practising on their templates hehe.",
+        "votes": 5,
+        "replies": [
+          {
+            "id": 3,
+            "author": "jessica21",
+            "authorAvatar": "UserAvatar-2.png",
+            "timestamp": "14 hours ago",
+            "body": "Okay, this comment wins.",
+            "votes": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "author": "andrew231",
+    "authorAvatar": "UserAvatar-3.png",
+    "timestamp": "20 hours ago",
+    "body": "Thanks for making this, super helpful",
+    "votes": 2
+  }
+]

@@ -1,18 +1,24 @@
 <template>
   <card>
-    <comment />
+    <comment v-for="comment in comments" :key="comment.id" :comment="comment" />
   </card>
 </template>
 
 <script>
 import Card from './components/Card';
 import Comment from './components/Comment';
+import mockComments from './mocks/mock-comments.json';
 
 export default {
   name: 'App',
   components: {
     Card,
     Comment,
+  },
+  data() {
+    return {
+      comments: mockComments,
+    };
   },
 };
 </script>
