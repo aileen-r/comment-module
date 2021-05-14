@@ -105,7 +105,7 @@ $reply-offset-md: calc(#{$gutter-width-md} + #{$img-width-md});
 .comment-info {
   display: flex;
   flex-wrap: wrap;
-  line-height: 16px;
+  line-height: 18px;
   margin-left: $reply-offset-sm;
   margin-top: 4px;
   padding-right: 35px;
