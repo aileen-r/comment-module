@@ -8,6 +8,7 @@
       <h1 class="header">Comment Module</h1>
     </header>
     <card key="card">
+      <accordion />
       <comment
         v-for="comment in comments"
         :key="comment.id"
@@ -18,6 +19,7 @@
 </template>
 
 <script>
+import Accordion from './components/Accordion.vue';
 import Card from './components/Card';
 import Comment from './components/Comment';
 import OctocatCorner from './components/OctocatCorner';
@@ -29,6 +31,7 @@ export default {
     Card,
     Comment,
     OctocatCorner,
+    Accordion,
   },
   data() {
     return {
