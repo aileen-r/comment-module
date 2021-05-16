@@ -45,7 +45,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   min-height: 100vh;
-  padding: 65px 15px;
+  padding: 35px 15px;
 
   @media screen and (min-width: $bp-md) {
     padding: 20px 40px;
@@ -53,9 +53,11 @@ export default {
 }
 
 .header {
+  color: var(--white);
   font-size: 26px;
+  margin-top: 0;
   text-align: center;
-  text-shadow: 0 2px 7px var(--lightest-grey);
+  text-shadow: 0 2px 7px var(--light-grey);
 
   @media screen and (min-width: $bp-sm) {
     font-size: 30px;
