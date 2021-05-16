@@ -48,7 +48,7 @@ export default {
   padding: 65px 15px;
 
   @media screen and (min-width: $bp-md) {
-    padding: 40px;
+    padding: 20px 40px;
   }
 }
 

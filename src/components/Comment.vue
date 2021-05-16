@@ -13,6 +13,7 @@
         <img
           class="comment-avatar"
           :src="`${publicPath}assets/${comment.authorAvatar}`"
+          :alt="`${comment.author}'s avatar`"
         />
         <div class="comment-info">
           <a href="#" class="comment-author-name">{{ comment.author }}</a>
