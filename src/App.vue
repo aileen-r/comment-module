@@ -8,7 +8,20 @@
       <h1 class="header">Comment Module</h1>
     </header>
     <card key="card">
-      <accordion />
+      <accordion>
+        <template v-slot:header>
+          <h1>Here might be a page title</h1>
+        </template>
+
+        <template v-slot:default>
+          <p>A paragraph for the main content.</p>
+          <p>And another one.</p>
+        </template>
+
+        <template v-slot:trigger>
+          <p>Here's some contact info</p>
+        </template>
+      </accordion>
       <comment
         v-for="comment in comments"
         :key="comment.id"

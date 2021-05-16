@@ -1,12 +1,11 @@
 <template>
-  <div
-    v-for="(content, i) in contents"
-    :class="{ 'accordion-active': content.active }"
-    :key="i"
-  >
-    <a href="#" @click="expand($event, i)"> {{ content.title }} </a>
-    <div class="accordion-body" :ref="'accordion-body-' + i">
-      {{ content.description }}
+  <div class="accordion" :class="{ 'accordion-active': active }">
+    <div class="accordion-header">
+      <slot name="header" />
+    </div>
+    <button type="button" @click="expand"><slot name="trigger" /></button>
+    <div class="accordion-body" ref="accordion-body">
+      <slot />
     </div>
   </div>
 </template>
@@ -18,49 +17,24 @@ export default {
   name: 'Accordian',
   data() {
     return {
-      contents: [
-        {
-          title: 'Lorem ipsum dolor sit amet',
-          description:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-          active: false,
-        },
-        {
-          title: 'Ut enim ad minim veniam',
-          description:
-            'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-          active: false,
-        },
-        {
-          title: 'Duis aute irure dolor in reprehenderit',
-          description:
-            'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur',
-          active: false,
-        },
-        {
-          title: 'Excepteur sint occaecat cupidatat non proident',
-          description:
-            'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-          active: false,
-        },
-      ],
+      active: true,
     };
   },
   methods: {
-    expand(e, i) {
+    expand(e) {
       e.preventDefault();
 
-      let el = this.$refs['accordion-body-' + i];
+      let el = this.$refs['accordion-body'];
 
-      if (this.contents[i].active === false) {
-        this.contents[i].active = true;
+      if (!this.active) {
+        this.active = true;
 
         gsap.to(el, 1, {
           height: el.scrollHeight,
           ease: 'elastic(1, 0.3)',
         });
       } else {
-        this.contents[i].active = false;
+        this.active = false;
 
         gsap.to(el, 0.5, {
           height: 0,
