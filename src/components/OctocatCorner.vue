@@ -5,8 +5,6 @@
     aria-label="View source on GitHub"
     title="View source on GitHub"
     ><svg
-      width="80"
-      height="80"
       viewBox="0 0 250 250"
       style="position: absolute; top: 0; border: 0; right: 0"
       aria-hidden="true"
@@ -60,10 +58,28 @@ export default {
 };
 </script>
 
-<style scoped>
-.github-corner:hover .octo-arm {
-  animation: octocat-wave 560ms ease-in-out;
+<style lang="scss" scoped>
+.github-corner {
+  svg {
+    height: 80px;
+    width: 80px;
+  }
+
+  &:hover .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+
+    @media (max-width: 500px) {
+      animation: none;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .github-corner .octo-arm {
+      animation: octocat-wave 560ms ease-in-out;
+    }
+  }
 }
+
 @keyframes octocat-wave {
   0%,
   100% {
@@ -76,14 +92,6 @@ export default {
   40%,
   80% {
     transform: rotate(10deg);
-  }
-}
-@media (max-width: 500px) {
-  .github-corner:hover .octo-arm {
-    animation: none;
-  }
-  .github-corner .octo-arm {
-    animation: octocat-wave 560ms ease-in-out;
   }
 }
 </style>
