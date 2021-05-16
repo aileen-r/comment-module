@@ -1,4 +1,8 @@
 <template>
+  <octocat-corner
+    fillColor="black"
+    githubUrl="https://github.com/aileen-r/comment-module"
+  />
   <transition name="fade" appear>
     <card>
       <comment
@@ -13,6 +17,7 @@
 <script>
 import Card from './components/Card';
 import Comment from './components/Comment';
+import OctocatCorner from './components/OctocatCorner';
 import mockComments from './mocks/mock-comments.json';
 
 export default {
@@ -20,6 +25,7 @@ export default {
   components: {
     Card,
     Comment,
+    OctocatCorner,
   },
   data() {
     return {
