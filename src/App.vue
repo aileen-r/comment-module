@@ -8,20 +8,6 @@
       <h1 class="header">Comment Module</h1>
     </header>
     <card key="card">
-      <accordion>
-        <template v-slot:header>
-          <h1>Here might be a page title</h1>
-        </template>
-
-        <template v-slot:default>
-          <p>A paragraph for the main content.</p>
-          <p>And another one.</p>
-        </template>
-
-        <template v-slot:trigger>
-          <p>Here's some contact info</p>
-        </template>
-      </accordion>
       <comment
         v-for="comment in comments"
         :key="comment.id"
@@ -32,7 +18,6 @@
 </template>
 
 <script>
-import Accordion from './components/Accordion.vue';
 import Card from './components/Card';
 import Comment from './components/Comment';
 import OctocatCorner from './components/OctocatCorner';
@@ -44,7 +29,6 @@ export default {
     Card,
     Comment,
     OctocatCorner,
-    Accordion,
   },
   data() {
     return {

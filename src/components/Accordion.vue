@@ -3,7 +3,9 @@
     <div class="accordion-header">
       <slot name="header" />
     </div>
-    <button type="button" @click="expand"><slot name="trigger" /></button>
+    <button class="accordion-trigger" type="button" @click="toggle">
+      <slot name="trigger" />
+    </button>
     <div class="accordion-body" ref="accordion-body">
       <slot />
     </div>
@@ -11,6 +13,10 @@
 </template>
 
 <script>
+/*
+ * Adapted from https://codepen.io/takaneichinose/pen/rXMrgv?editors=0110
+ * Extended to support nesting (TODO)
+ */
 import { gsap } from 'gsap';
 
 export default {
@@ -21,25 +27,30 @@ export default {
     };
   },
   methods: {
-    expand(e) {
+    close() {
+      this.active = false;
+      const el = this.$refs['accordion-body'];
+      gsap.to(el, 0.5, {
+        height: 0,
+        ease: 'bounce',
+      });
+    },
+
+    open() {
+      this.active = true;
+      const el = this.$refs['accordion-body'];
+      gsap.to(el, 1, {
+        height: el.scrollHeight,
+        ease: 'elastic(1, 0.3)',
+      });
+    },
+
+    toggle(e) {
       e.preventDefault();
-
-      let el = this.$refs['accordion-body'];
-
-      if (!this.active) {
-        this.active = true;
-
-        gsap.to(el, 1, {
-          height: el.scrollHeight,
-          ease: 'elastic(1, 0.3)',
-        });
+      if (this.active) {
+        this.close();
       } else {
-        this.active = false;
-
-        gsap.to(el, 0.5, {
-          height: 0,
-          ease: 'bounce',
-        });
+        this.open();
       }
     },
   },
@@ -48,7 +59,6 @@ export default {
 
 <style lang="scss" scoped>
 .accordion-body {
-  height: 0;
   overflow: hidden;
 }
 </style>
