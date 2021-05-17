@@ -26,7 +26,7 @@
 
       <template v-slot:trigger>Show</template>
 
-      <template v-slot:default>
+      <template v-slot:default="{ updateHeight }">
         <div class="comment-body">
           <p>
             {{ comment.body }}
@@ -42,6 +42,7 @@
             :key="reply.id"
             :comment="reply"
             :nested="true"
+            @update-height="updateHeight"
           />
         </div>
       </template>
