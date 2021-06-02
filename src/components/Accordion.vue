@@ -44,9 +44,10 @@ export default {
   methods: {
     close() {
       this.active = false;
-      gsap.to(this.bodyRef, 0.5, {
+      gsap.to(this.bodyRef, {
         height: 0,
         ease: 'bounce',
+        duration: 0.5,
       });
       this.$parent.$emit(
         'updateHeight',
@@ -57,9 +58,10 @@ export default {
     open() {
       this.active = true;
       this.$parent.$emit('updateHeight', this.prevHeight - this.collapseOffset);
-      gsap.to(this.bodyRef, 1, {
+      gsap.to(this.bodyRef, {
         height: this.prevHeight,
         ease: 'elastic(1, 0.3)',
+        duration: 1,
       });
     },
 
@@ -91,9 +93,10 @@ export default {
           ease = 'elastic(1, 0.3)';
         }
 
-        gsap.to(this.bodyRef, duration, {
+        gsap.to(this.bodyRef, {
           height,
           ease,
+          duration,
         });
         this.$parent.$emit('updateHeight', childHeight);
         this.prevHeight = height;
