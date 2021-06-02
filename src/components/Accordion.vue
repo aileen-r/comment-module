@@ -24,6 +24,7 @@ export default {
   data() {
     return {
       active: true,
+      prevHeight: 0,
     };
   },
   props: {
@@ -37,6 +38,9 @@ export default {
       return this.$refs['accordion-body'];
     },
   },
+  mounted() {
+    this.prevHeight = this.bodyRef.clientHeight;
+  },
   methods: {
     close() {
       this.active = false;
@@ -46,18 +50,15 @@ export default {
       });
       this.$parent.$emit(
         'updateHeight',
-        -this.bodyRef.clientHeight + this.collapseOffset
+        -this.prevHeight + this.collapseOffset
       );
     },
 
     open() {
       this.active = true;
-      this.$parent.$emit(
-        'updateHeight',
-        this.bodyRef.scrollHeight - this.collapseOffset
-      );
+      this.$parent.$emit('updateHeight', this.prevHeight - this.collapseOffset);
       gsap.to(this.bodyRef, 1, {
-        height: this.bodyRef.scrollHeight,
+        height: this.prevHeight,
         ease: 'elastic(1, 0.3)',
       });
     },
@@ -74,7 +75,7 @@ export default {
     updateHeight(childHeight) {
       // only update parent height if expanded
       if (this.active) {
-        let height = this.bodyRef.clientHeight + childHeight,
+        let height = this.prevHeight + childHeight,
           duration,
           ease;
 
@@ -95,6 +96,7 @@ export default {
           ease,
         });
         this.$parent.$emit('updateHeight', childHeight);
+        this.prevHeight = height;
       }
     },
   },
