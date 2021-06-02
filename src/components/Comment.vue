@@ -4,7 +4,7 @@
     :class="{ 'nested-comment': nested }"
     :id="comment.id"
   >
-    <accordion :collapse-offset="34">
+    <accordion :collapse-offset="isMobile ? 23 : 34">
       <template v-slot:header>
         <a :href="`#${comment.id}`" class="comment-border-link">
           <span class="sr-only">Jump to {{ comment.author }}'s</span>
@@ -56,12 +56,14 @@ import CommentVoting from './CommentVoting';
 
 export default {
   name: 'Comment',
+  mediaQuery: window.matchMedia('(min-width: 768px)'),
   components: {
     Accordion,
     CommentVoting,
   },
   data() {
     return {
+      isMobile: false,
       publicPath: process.env.BASE_URL,
       votes: this.comment.votes,
     };
@@ -74,6 +76,18 @@ export default {
     nested: {
       type: Boolean,
       default: false,
+    },
+  },
+  mounted() {
+    this.$options.mediaQuery.addListener(this.handleTabletBpChange);
+    this.handleTabletBpChange(this.$options.mediaQuery);
+  },
+  beforeUnmount() {
+    this.$options.mediaQuery.removeListener(this.handleTabletBpChange);
+  },
+  methods: {
+    handleTabletBpChange(e) {
+      this.isMobile = !e.matches;
     },
   },
 };
