@@ -4,22 +4,20 @@
     :class="{ 'nested-comment': nested }"
     :id="comment.id"
   >
-    <accordion>
+    <accordion :collapse-offset="34">
       <template v-slot:header>
         <a :href="`#${comment.id}`" class="comment-border-link">
           <span class="sr-only">Jump to {{ comment.author }}'s</span>
         </a>
-        <header>
-          <div class="comment-heading">
-            <img
-              class="comment-avatar"
-              :src="`${publicPath}assets/${comment.authorAvatar}`"
-              :alt="`${comment.author}'s avatar`"
-            />
-            <div class="comment-info">
-              <a href="#" class="comment-author-name">{{ comment.author }}</a>
-              <p class="comment-timestamp">{{ comment.timestamp }}</p>
-            </div>
+        <header class="comment-heading">
+          <img
+            class="comment-avatar"
+            :src="`${publicPath}assets/${comment.authorAvatar}`"
+            :alt="`${comment.author}'s avatar`"
+          />
+          <div class="comment-info">
+            <a href="#" class="comment-author-name">{{ comment.author }}</a>
+            <p class="comment-timestamp">{{ comment.timestamp }}</p>
           </div>
         </header>
       </template>

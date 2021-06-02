@@ -26,6 +26,12 @@ export default {
       active: true,
     };
   },
+  props: {
+    collapseOffset: {
+      type: Number,
+      default: 0,
+    },
+  },
   computed: {
     bodyRef() {
       return this.$refs['accordion-body'];
@@ -38,12 +44,18 @@ export default {
         height: 0,
         ease: 'bounce',
       });
-      this.$parent.$emit('updateHeight', -this.bodyRef.scrollHeight);
+      this.$parent.$emit(
+        'updateHeight',
+        -this.bodyRef.clientHeight + this.collapseOffset
+      );
     },
 
     open() {
       this.active = true;
-      this.$parent.$emit('updateHeight', this.bodyRef.scrollHeight);
+      this.$parent.$emit(
+        'updateHeight',
+        this.bodyRef.scrollHeight - this.collapseOffset
+      );
       gsap.to(this.bodyRef, 1, {
         height: this.bodyRef.scrollHeight,
         ease: 'elastic(1, 0.3)',
@@ -60,11 +72,26 @@ export default {
     },
 
     updateHeight(childHeight) {
+      // only update parent height if expanded
       if (this.active) {
-        const duration = childHeight < 0 ? 0.5 : 1;
-        const ease = childHeight < 0 ? 'bounce' : 'elastic(1, 0.3)';
+        let height = this.bodyRef.clientHeight + childHeight,
+          duration,
+          ease;
+
+        // child collapse
+        if (childHeight < 0) {
+          duration = 0.5;
+          ease = 'bounce';
+        }
+
+        // child expand
+        else {
+          duration = 1;
+          ease = 'elastic(1, 0.3)';
+        }
+
         gsap.to(this.bodyRef, duration, {
-          height: this.bodyRef.clientHeight + childHeight,
+          height,
           ease,
         });
         this.$parent.$emit('updateHeight', childHeight);
