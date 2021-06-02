@@ -4,7 +4,7 @@
       <slot name="header" />
     </div>
     <button class="accordion-trigger" type="button" @click="toggle">
-      <slot name="trigger" />
+      <slot name="trigger" :active="active">{{ defaultTrigger }}</slot>
     </button>
     <div class="accordion-body" ref="accordion-body">
       <slot :update-height="updateHeight" />
@@ -36,6 +36,9 @@ export default {
   computed: {
     bodyRef() {
       return this.$refs['accordion-body'];
+    },
+    defaultTrigger() {
+      return this.active ? '-' : '+';
     },
   },
   mounted() {

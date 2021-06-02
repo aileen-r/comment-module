@@ -22,7 +22,9 @@
         </header>
       </template>
 
-      <template v-slot:trigger>Show</template>
+      <template v-slot:trigger="{ active }">{{
+        active ? 'Hide' : 'Show'
+      }}</template>
 
       <template v-slot:default="{ updateHeight }">
         <div class="comment-body">
