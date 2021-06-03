@@ -1,5 +1,9 @@
 <template>
-  <div class="accordion" :class="{ 'accordion-active': active }">
+  <div
+    class="accordion"
+    :class="{ 'accordion-active': active }"
+    ref="accordion"
+  >
     <div class="accordion-header">
       <slot name="header" />
     </div>
@@ -25,6 +29,7 @@ export default {
     return {
       active: true,
       prevHeight: 0,
+      prevAccordionHeight: 0,
     };
   },
   props: {
@@ -34,6 +39,9 @@ export default {
     },
   },
   computed: {
+    accordionRef() {
+      return this.$refs['accordion'];
+    },
     bodyRef() {
       return this.$refs['accordion-body'];
     },
@@ -43,6 +51,7 @@ export default {
   },
   mounted() {
     this.prevHeight = this.bodyRef.clientHeight;
+    this.prevAccordionHeight = Math.floor(this.accordionRef.scrollHeight);
   },
   methods: {
     close() {
@@ -52,15 +61,13 @@ export default {
         ease: 'bounce',
         duration: 0.5,
       });
-      this.$parent.$emit(
-        'updateHeight',
-        -this.prevHeight + this.collapseOffset
-      );
+      console.log('close prevAccordionHeight', this.prevAccordionHeight);
+      this.$parent.$emit('updateHeight', -this.prevAccordionHeight + 55);
     },
 
     open() {
       this.active = true;
-      this.$parent.$emit('updateHeight', this.prevHeight - this.collapseOffset);
+      this.$parent.$emit('updateHeight', this.prevAccordionHeight - 55);
       gsap.to(this.bodyRef, {
         height: this.prevHeight,
         ease: 'elastic(1, 0.3)',
@@ -79,6 +86,8 @@ export default {
 
     updateHeight(childHeight) {
       // only update parent height if expanded
+      console.log('childHeight', childHeight);
+      console.log('prevHeight', this.prevHeight);
       if (this.active) {
         let height = this.prevHeight + childHeight,
           duration,
@@ -96,11 +105,17 @@ export default {
           ease = 'elastic(1, 0.3)';
         }
 
-        gsap.to(this.bodyRef, {
-          height,
-          ease,
-          duration,
-        });
+        gsap
+          .to(this.bodyRef, {
+            height,
+            ease,
+            duration,
+          })
+          .then(() => {
+            this.prevAccordionHeight = Math.ceil(
+              this.accordionRef.scrollHeight
+            );
+          });
         this.$parent.$emit('updateHeight', childHeight);
         this.prevHeight = height;
       }
