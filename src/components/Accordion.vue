@@ -50,8 +50,11 @@ export default {
     },
   },
   mounted() {
-    this.prevHeight = this.bodyRef.clientHeight;
-    this.prevAccordionHeight = Math.floor(this.accordionRef.scrollHeight);
+    window.addEventListener('resize', this.resetHeights);
+    this.resetHeights();
+  },
+  beforeUnmount() {
+    window.removeEventListener('resize', this.resetHeights);
   },
   methods: {
     close() {
@@ -61,7 +64,7 @@ export default {
         ease: 'bounce',
         duration: 0.5,
       });
-      console.log('close prevAccordionHeight', this.prevAccordionHeight);
+      // console.log('close prevAccordionHeight', this.prevAccordionHeight);
       this.$parent.$emit('updateHeight', -this.prevAccordionHeight + 55);
     },
 
@@ -75,6 +78,19 @@ export default {
       });
     },
 
+    // TODO: debounce
+    resetHeights() {
+      // reset all heights rather than trying to recalculate
+      this.bodyRef.removeAttribute('style');
+      // force collapsed accordion-body open after removing height: 0px
+      if (!this.active) {
+        this.active = true;
+      }
+      // reset stored height values
+      this.prevHeight = this.bodyRef.scrollHeight;
+      this.prevAccordionHeight = Math.floor(this.accordionRef.scrollHeight);
+    },
+
     toggle(e) {
       e.preventDefault();
       if (this.active) {
@@ -86,8 +102,8 @@ export default {
 
     updateHeight(childHeight) {
       // only update parent height if expanded
-      console.log('childHeight', childHeight);
-      console.log('prevHeight', this.prevHeight);
+      // console.log('childHeight', childHeight);
+      // console.log('prevHeight', this.prevHeight);
       if (this.active) {
         let height = this.prevHeight + childHeight,
           duration,
