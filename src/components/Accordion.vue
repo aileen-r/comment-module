@@ -29,8 +29,8 @@ export default {
   data() {
     return {
       active: true,
+      prevBodyHeight: 0,
       prevHeight: 0,
-      prevAccordionHeight: 0,
     };
   },
   props: {
@@ -68,22 +68,20 @@ export default {
         ease: 'bounce',
         duration: 0.5,
       });
-      // console.log('close prevAccordionHeight', this.prevAccordionHeight);
-      this.$parent.$emit('updateHeight', -this.prevAccordionHeight + 55);
+      this.$parent.$emit('updateHeight', -this.prevHeight + 55);
     },
 
     open() {
       this.active = true;
-      this.$parent.$emit('updateHeight', this.prevAccordionHeight - 55);
+      this.$parent.$emit('updateHeight', this.prevHeight - 55);
       gsap.to(this.bodyRef, {
-        height: this.prevHeight,
+        height: this.prevBodyHeight,
         ease: 'elastic(1, 0.3)',
         duration: 1,
       });
     },
 
     resetHeights() {
-      console.log('resetHeights');
       // reset all heights rather than trying to recalculate
       this.bodyRef.removeAttribute('style');
       // force collapsed accordion-body open after removing height: 0px
@@ -91,8 +89,8 @@ export default {
         this.active = true;
       }
       // reset stored height values
-      this.prevHeight = this.bodyRef.scrollHeight;
-      this.prevAccordionHeight = Math.floor(this.accordionRef.scrollHeight);
+      this.prevBodyHeight = this.bodyRef.scrollHeight;
+      this.prevHeight = Math.floor(this.accordionRef.scrollHeight);
     },
 
     toggle(e) {
@@ -106,10 +104,8 @@ export default {
 
     updateHeight(childHeight) {
       // only update parent height if expanded
-      // console.log('childHeight', childHeight);
-      // console.log('prevHeight', this.prevHeight);
       if (this.active) {
-        let height = this.prevHeight + childHeight,
+        let height = this.prevBodyHeight + childHeight,
           duration,
           ease;
 
@@ -132,12 +128,10 @@ export default {
             duration,
           })
           .then(() => {
-            this.prevAccordionHeight = Math.ceil(
-              this.accordionRef.scrollHeight
-            );
+            this.prevHeight = Math.ceil(this.accordionRef.scrollHeight);
           });
         this.$parent.$emit('updateHeight', childHeight);
-        this.prevHeight = height;
+        this.prevBodyHeight = height;
       }
     },
   },
