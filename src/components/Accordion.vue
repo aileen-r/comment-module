@@ -22,6 +22,7 @@
  * Extended to support nesting
  */
 import { gsap } from 'gsap';
+import { debounce } from 'debounce';
 
 export default {
   name: 'Accordion',
@@ -48,6 +49,9 @@ export default {
     defaultTrigger() {
       return this.active ? '-' : '+';
     },
+  },
+  created() {
+    this.resetHeights = debounce(this.resetHeights, 100);
   },
   mounted() {
     window.addEventListener('resize', this.resetHeights);
@@ -78,8 +82,8 @@ export default {
       });
     },
 
-    // TODO: debounce
     resetHeights() {
+      console.log('resetHeights');
       // reset all heights rather than trying to recalculate
       this.bodyRef.removeAttribute('style');
       // force collapsed accordion-body open after removing height: 0px
