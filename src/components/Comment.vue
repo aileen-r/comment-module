@@ -127,6 +127,15 @@ $reply-offset-md: calc(#{$gutter-width-md} + #{$img-width-md});
     }
   }
 
+  .accordion:not(.accordion-active) {
+    padding-bottom: 23px;
+    transition: padding-bottom 0.5s;
+
+    @media screen and (min-width: $bp-md) {
+      padding-bottom: 34px;
+    }
+  }
+
   .comment-heading {
     display: flex;
 
