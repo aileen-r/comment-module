@@ -12,9 +12,19 @@ This project was bootstrapped with the [Vue CLI](https://v3.vuejs.org/guide/inst
 
 ## Technologies Used
 
-- [VueJS](https://v3.vuejs.org/) for frontend framework.
+- [VueJS](https://v3.vuejs.org/) for frontend framework (my first foray into Vue 3).
+- [GSAP](https://greensock.com/gsap/) for the expand/collapse comment animations.
 - [Netlify](https://www.netlify.com/) for hosting.
 
+## Next Features
+
+At the moment this module is populated with hard-coded data.
+
+I am planning to integrate it with the headless CMS [prismic](https://prismic.io/). With this I'm hoping to:
+- Develop a proof-of-concept for using a headless CMS for a commenting system. Given how well suited they are for creating article-focused websites, it would be great to bring comments into a headless CMS too.
+- Test out [prismic's plugin for VueJS 3](https://github.com/prismicio/prismic-vue/releases/tag/v3.0.0-alpha.0), which is still in alpha.
+
+If you are curious to see my progress on this, it can be found in [this PR](https://github.com/aileen-r/comment-module/pull/2).
 
 ## Local Development
 
