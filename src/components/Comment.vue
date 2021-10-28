@@ -7,16 +7,18 @@
     <accordion :collapse-offset="isMobile ? 23 : 34">
       <template v-slot:header>
         <a :href="`#${comment.id}`" class="comment-border-link">
-          <span class="sr-only">Jump to {{ comment.author }}'s</span>
+          <span class="sr-only"
+            >Jump to {{ comment.author.name }}'s comment</span
+          >
         </a>
         <header class="comment-heading">
           <img
             class="comment-avatar"
             :src="authorAvatar"
-            :alt="`${comment.author}'s avatar`"
+            :alt="`${comment.author.name}'s avatar`"
           />
           <div class="comment-info">
-            <a href="#" class="comment-author-name">{{ comment.author }}</a>
+            <span class="comment-author-name">{{ comment.author.name }}</span>
             <p class="comment-timestamp">{{ comment.timestamp }}</p>
           </div>
         </header>
@@ -78,8 +80,15 @@ export default {
   },
   computed: {
     authorAvatar() {
+      if (this.comment.author.avatar) {
+        return this.comment.author.avatar.url;
+      }
+      const nameQuery =
+        this.comment.author.name === 'Anonymous'
+          ? '?'
+          : this.comment.author.name;
       return `https://eu.ui-avatars.com/api/?name=${encodeURIComponent(
-        this.comment.author
+        nameQuery
       )}&background=9594ff&color=fff`;
     },
   },
@@ -175,11 +184,6 @@ $reply-offset-md: calc(#{$gutter-width-md} + #{$img-width-md});
       color: var(--black);
       font-weight: 600;
       margin-right: 10px;
-      text-decoration: none;
-
-      &:hover {
-        text-decoration: underline;
-      }
     }
 
     .comment-timestamp {

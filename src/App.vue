@@ -37,11 +37,30 @@ export default {
   methods: {
     async fetchComments() {
       try {
-        const res = await this.$prismic.client.query('');
-        this.comments = res.results.map(c => c.data);
+        const res = await this.$prismic.client.getAll(
+          // This is not working at present
+          this.$prismic.predicate.at('document.type', 'comment')
+        );
+        // TODO: remove filter once prismic api behaves
+        this.comments = res
+          .filter(d => d.type === 'comment')
+          // Already have authors in res so passing in, but unlikely to be the case when API works
+          .map(c => this.formatCommentWithAuthor(c, res));
       } catch (err) {
+        // eslint-disable-next-line no-console
         console.error(err);
       }
+    },
+    formatCommentWithAuthor(comment, data) {
+      let author = data.find(
+        d => d.type === 'author' && d.id === comment.data.author.id
+      )?.data;
+      if (!author) {
+        author = {
+          name: 'Anonymous',
+        };
+      }
+      return { ...comment.data, author };
     },
   },
   created() {
