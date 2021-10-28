@@ -9,7 +9,7 @@
     "start": "vue-cli-service serve"
   },
   "dependencies": {
-    "@prismicio/vue": "^3.0.0-alpha.0",
+    "@prismicio/vue": "^3.0.0-alpha.4",
     "core-js": "^3.19.0",
     "debounce": "^1.2.1",
     "gsap": "^3.8.0",
