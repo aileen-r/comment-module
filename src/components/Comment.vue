@@ -12,7 +12,7 @@
         <header class="comment-heading">
           <img
             class="comment-avatar"
-            :src="`${publicPath}assets/${comment.authorAvatar}`"
+            :src="authorAvatar"
             :alt="`${comment.author}'s avatar`"
           />
           <div class="comment-info">
@@ -28,9 +28,7 @@
 
       <template v-slot:default="{ updateHeight }">
         <div class="comment-body">
-          <p>
-            {{ comment.body }}
-          </p>
+          <prismic-rich-text :field="comment.body" />
           <comment-voting v-model:votes="votes" />
           <button type="button">Reply</button>
           <button type="button">Report</button>
@@ -76,6 +74,13 @@ export default {
     nested: {
       type: Boolean,
       default: false,
+    },
+  },
+  computed: {
+    authorAvatar() {
+      return `https://eu.ui-avatars.com/api/?name=${encodeURIComponent(
+        this.comment.author
+      )}&background=9594ff&color=fff`;
     },
   },
   mounted() {

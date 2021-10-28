@@ -21,7 +21,6 @@
 import Card from './components/Card';
 import Comment from './components/Comment';
 import OctocatCorner from './components/OctocatCorner';
-import mockComments from './mocks/mock-comments.json';
 
 export default {
   name: 'App',
@@ -32,8 +31,21 @@ export default {
   },
   data() {
     return {
-      comments: mockComments,
+      comments: [],
     };
+  },
+  methods: {
+    async fetchComments() {
+      try {
+        const res = await this.$prismic.client.query('');
+        this.comments = res.results.map(c => c.data);
+      } catch (err) {
+        console.error(err);
+      }
+    },
+  },
+  created() {
+    this.fetchComments();
   },
 };
 </script>
