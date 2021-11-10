@@ -42,6 +42,7 @@ export default class CommentService {
     } catch (err) {
       // eslint-disable-next-line no-console
       console.error(err);
+      throw err;
     }
   }
 
