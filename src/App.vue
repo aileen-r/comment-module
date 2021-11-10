@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import CommentService from './services/commentService';
+
 import Card from './components/Card';
 import Comment from './components/Comment';
 import OctocatCorner from './components/OctocatCorner';
@@ -33,61 +35,11 @@ export default {
   data() {
     return {
       comments: [],
-      flatComments: [],
     };
   },
 
-  // TODO - consider how to abstract data logic away and while still accessing this.$prismic
-  methods: {
-    /**
-     * Totally stolen from https://stackoverflow.com/a/40732240/16315892
-     */
-    buildCommentTree() {
-      const idMap = Object.create(null);
-      this.flatComments.forEach(c => (idMap[c.id] = { ...c, replies: [] }));
-      const dataTree = [];
-      this.flatComments.forEach(c => {
-        if (c.parent_comment.id) {
-          idMap[c.parent_comment.id].replies.push(idMap[c.id]);
-        } else dataTree.push(idMap[c.id]);
-      });
-      this.comments = dataTree;
-    },
-
-    async fetchComments() {
-      try {
-        const res = await this.$prismic.client.getAll(
-          // This is not working at present
-          this.$prismic.predicate.at('document.type', 'comment')
-        );
-        // TODO: remove filter once prismic api behaves
-        this.flatComments = res
-          .filter(d => d.type === 'comment')
-          // Already have authors in res so passing in, but unlikely to be the case when API works
-          .map(c => this.formatCommentWithAuthor(c, res));
-
-        this.buildCommentTree();
-      } catch (err) {
-        // eslint-disable-next-line no-console
-        console.error(err);
-      }
-    },
-
-    formatCommentWithAuthor(comment, data) {
-      let author = data.find(
-        d => d.type === 'author' && d.id === comment.data.author.id
-      )?.data;
-      if (!author) {
-        author = {
-          name: 'Anonymous',
-        };
-      }
-      return { ...comment.data, id: comment.id, author };
-    },
-  },
-
-  created() {
-    this.fetchComments();
+  async created() {
+    this.comments = await new CommentService(this.$prismic).getComments();
   },
 };
 </script>
