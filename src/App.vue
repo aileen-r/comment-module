@@ -8,7 +8,10 @@
       <h1 class="header">Comment Module</h1>
     </header>
     <card key="card">
+      <loader v-if="loading" />
+      <error v-else-if="error" @retry="retry" />
       <comment
+        v-else
         v-for="comment in comments"
         :key="comment.id"
         :comment="comment"
@@ -18,22 +21,52 @@
 </template>
 
 <script>
+import CommentService from './services/commentService';
+
 import Card from './components/Card';
 import Comment from './components/Comment';
+import Error from './components/Error';
+import Loader from './components/Loader';
 import OctocatCorner from './components/OctocatCorner';
-import mockComments from './mocks/mock-comments.json';
 
 export default {
   name: 'App',
   components: {
     Card,
     Comment,
+    Error,
+    Loader,
     OctocatCorner,
   },
+
   data() {
     return {
-      comments: mockComments,
+      comments: [],
+      error: false,
+      loading: true,
     };
+  },
+
+  async created() {
+    await this.getComments();
+  },
+
+  methods: {
+    async getComments() {
+      try {
+        this.comments = await new CommentService(this.$prismic).getComments();
+      } catch (err) {
+        this.error = true;
+      } finally {
+        this.loading = false;
+      }
+    },
+
+    retry() {
+      this.loading = true;
+      this.error = false;
+      this.getComments();
+    },
   },
 };
 </script>
@@ -54,17 +87,17 @@ export default {
 
 .header {
   color: var(--white);
-  font-size: 26px;
+  font-size: 1.65em;
   margin-top: 0;
   text-align: center;
   text-shadow: 0 2px 7px var(--light-grey);
 
   @media screen and (min-width: $bp-sm) {
-    font-size: 30px;
+    font-size: 1.9em;
   }
 
   @media screen and (min-width: $bp-md) {
-    font-size: 36px;
+    font-size: 2.2em;
   }
 }
 
